@@ -1,0 +1,61 @@
+
+
+<div>
+    <h2>Welcome!</h2>
+</div>
+<br>
+<div class="centering">
+<img src="logo.png" alt="Course Logo" class="centering" >
+</div>
+<br><p/>
+
+<table class="centering" width="600">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Open Price</th>
+        <th>Last Sale</th>
+        <th>Change Net</th>
+        <th>Share Volume</th>
+        <th>-</th>
+        <th>Buy</th>
+        <th>Sell</th>
+    </tr>
+    </thead>
+    <tbody>
+        {{#each item in model}}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{#link-to 'marketprice'}}{{item.name}}{{/link-to}}</td>
+            <td>{{item.openPrice}}</td>
+            <td>ment</td>
+            <td>ment</td>
+            <td>ment</td>
+            <td>halla</td>
+            <td>{{#link-to 'placebidorder' }}Buy{{/link-to}}</td>
+            <td>{{#link-to 'placebidorder' }}Sell{{/link-to}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<br>
+<button {{action 'trans'}}>Transition</button><p/>
+{{#link-to 'placebidorder' 1 }}Place bid order page Micro{{/link-to}} <br>
+{{#link-to 'placebidorder' 2 }}Place bid order page Apple{{/link-to}} <br>
+{{#link-to 'placebidorder' 3 }}Place bid order page Facebook{{/link-to}}
+
+
+<div>
+  {{outlet: 'marketprice'}}   </div>
+<br>
+<div>
+  {{outlet: 'marketorder'}}   </div>
+
+
+
+
+
+
+<!--<button {{action 'brance'}}>Transition To Order</button><p/>
+<button {{action 'trance'}}>Transition To Price</button><p/> -->

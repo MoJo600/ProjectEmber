@@ -1,0 +1,14 @@
+
+
+<form>
+
+    <h2>Welcome to {{model.name}} </h2>
+
+
+    Number of Shares:{{input type="text" size="10" valueBinding="numOfShares"}}<br>
+    Price:{{view Ember.TextField size='10' valueBinding="price"}}<br>
+
+
+    <button type='button' {{action 'createBuy' }}>Register</button>
+
+</form>
