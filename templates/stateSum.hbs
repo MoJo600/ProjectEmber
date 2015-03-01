@@ -33,29 +33,29 @@
             <td>ment</td>
             <td>ment</td>
             <td>halla</td>
-            <td>{{#link-to 'placebidorder' }}Buy{{/link-to}}</td>
-            <td>{{#link-to 'placebidorder' }}Sell{{/link-to}}</td>
+            <td>{{#link-to 'placebidorder' item.id }}Buy{{/link-to}}</td>
+            <td>{{#link-to 'placebidorder' item.id }}Sell{{/link-to}}</td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <br>
 <button {{action 'trans'}}>Transition</button><p/>
+<button {{action 'openModal' 'marketprice'}}>Show Market table</button><p/>
 {{#link-to 'placebidorder' 1 }}Place bid order page Micro{{/link-to}} <br>
 {{#link-to 'placebidorder' 2 }}Place bid order page Apple{{/link-to}} <br>
 {{#link-to 'placebidorder' 3 }}Place bid order page Facebook{{/link-to}}
 
 
 <div>
-  {{outlet: 'marketprice'}}   </div>
+ {{outlet}}  </div>
 <br>
-<div>
-  {{outlet: 'marketorder'}}   </div>
 
 
 
 
 
 
-<!--<button {{action 'brance'}}>Transition To Order</button><p/>
-<button {{action 'trance'}}>Transition To Price</button><p/> -->
+
+<!--<button >Transition To Order</button><p/>
+<button 'trance'}}>Transition To Price</button><p/> -->

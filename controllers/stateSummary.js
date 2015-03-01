@@ -27,6 +27,13 @@ actions: {
 
         this.transitionToRoute('marketprice');
 
+    },
+
+    openModal: function(param) {
+        this.render(param, {
+            into: 'statSum',
+            outlet: 'modal'
+        });
     }
 
 

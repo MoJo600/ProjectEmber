@@ -7,3 +7,16 @@
 
 
 }
+
+
+#first{
+
+    display: inline-block;
+    margin-left: 100px;
+}
+
+#second{
+
+    display: inline-block;
+
+}
