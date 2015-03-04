@@ -18,7 +18,6 @@
         <th>Last Sale</th>
         <th>Change Net</th>
         <th>Share Volume</th>
-        <th>-</th>
         <th>Buy</th>
         <th>Sell</th>
     </tr>
@@ -27,14 +26,13 @@
         {{#each item in model}}
         <tr>
             <td>{{item.id}}</td>
-            <td>{{#link-to 'marketprice'}}{{item.name}}{{/link-to}}</td>
+            <td>{{#link-to 'market' item.id}}{{item.name}}{{/link-to}}</td>
             <td>{{item.openPrice}}</td>
-            <td>ment</td>
-            <td>ment</td>
-            <td>ment</td>
-            <td>halla</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
             <td>{{#link-to 'placebidorder' item.id }}Buy{{/link-to}}</td>
-            <td>{{#link-to 'placebidorder' item.id }}Sell{{/link-to}}</td>
+            <td>{{#link-to 'placesaleprice' item.id }}Sell{{/link-to}}</td>
         </tr>
         {{/each}}
     </tbody>
@@ -47,11 +45,7 @@
 
 
 
-<button {{action 'trans'}}>Transition</button><p/>
-<button {{action 'openModal' 'marketprice'}}>Show Market table</button><p/>
-{{#link-to 'placebidorder' 1 }}Place bid order page Micro{{/link-to}} <br>
-{{#link-to 'placebidorder' 2 }}Place bid order page Apple{{/link-to}} <br>
-{{#link-to 'placebidorder' 3 }}Place bid order page Facebook{{/link-to}}
+
 
 
 

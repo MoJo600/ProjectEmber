@@ -9,7 +9,8 @@ StockMarket.Company= DS.Model.extend({
     name: DS.attr('string'),
     openPrice: DS.attr('string'),
     buyOrders: DS.hasMany('buyOrd'),
-    sellOrders: DS.hasMany('sellOrd')
+    sellOrders: DS.hasMany('sellOrd'),
+    logo: DS.attr('string')
 
 
 });

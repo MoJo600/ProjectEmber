@@ -10,6 +10,9 @@
     Price:{{view Ember.TextField size='10' valueBinding="price"}}<br>
 
 
-    <button type='button' {{action 'createBuy' }}>Register</button>
+    <button type='button' {{action 'createSell'}} >Register</button>
+    <div id="order">
+        <button type="button" {{action 'trans'}}>Back</button>
+    </div>
 
 </form>

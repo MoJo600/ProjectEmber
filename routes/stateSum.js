@@ -11,31 +11,31 @@ StockMarket.StateSumRoute= Ember.Route.extend({
         return this.store.find('company');
 
         // "this.store" is the data store represented by the adapter
-    },
-
-
-    events: {
-
-        trans: function(){
-            console.log("It's clicked, router");
-        }
-    },
-
-    renderTemplate: function() {
-
-       var MarketPrice = this.controllerFor('marketprice');
-
-        this.render('stateSum');
-     // this.render('marketprice', {   // the template to render
-      //      into: 'stateSum',                // the template to render into
-      //     outlet: 'marketprice'             // the name of the outlet in that template
-          //controller: MarketPrice       // the controller to use for the template
-      // });
-
-
     }
 
 
+  //  //events: {
+  //  //
+  //  //    trans: function(){
+  //  //        console.log("It's clicked, router");
+  //  //    }
+  //  },
+  //
+  //  renderTemplate: function() {
+  //
+  //     //var MarketPrice = this.controllerFor('market');
+  //
+  ////      this.render('stateSum');
+  //   // this.render('marketprice', {   // the template to render
+  //    //      into: 'stateSum',                // the template to render into
+  //    //     outlet: 'marketprice'             // the name of the outlet in that template
+  //        //controller: MarketPrice       // the controller to use for the template
+  //    // });
+  //
+  //
+  //  }
+  //
+  //
 
 });
 

@@ -15,21 +15,26 @@
     <script src="libs/localstorage-adapter-0.3.2.js"></script>
 
     <script src="stockMarket.js"></script>
-    <script src="controllers/Marketprice.js"></script>
+    <script src="controllers/market.js"></script>
+    <script src="controllers/placebidorder.js"></script>
+    <script src="controllers/placesaleprice.js"></script>
     <script src="router.js"></script>
     <script src="models/company.js"></script>
+    <script src="routes/placebidorder.js"></script>
+    <script src="routes/placesaleprice.js"></script>
     <script src="models/buyOrd.js"></script>
     <script src="models/sellOrd.js"></script>
-    <script src="controllers/stateSummary.js"></script>
-    <script src="CSS/normalize.css"></script>
-
+    <script src="controllers/stateSum.js"></script>
+    <script src="controllers/market.js"></script>
+    <!--<script src="CSS/normalize.css"></script>-->
+    <script src="routes/market.js"></script>
     <script src="companyData.js"></script>
 
     <script src="routes/stateSum.js"></script>
 
     <script>
         EmberHandlebarsLoader.loadTemplates([
-            'stateSum' , 'placebidorder' , 'marketorder' , 'marketprice'
+            'stateSum' , 'placebidorder' , 'market', 'placesaleprice'
         ]);
     </script>
 </head>

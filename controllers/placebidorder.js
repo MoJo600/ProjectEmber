@@ -4,12 +4,14 @@
 
 
 
-StockMarket.PlacebidorderController = Ember.Route.extend({
+StockMarket.PlacebidorderController = Ember.ObjectController.extend({
 
     actions: {
 
               createBuy: function(){
 
+                  alert("hey");
+                  //console.log("Sheesh");
               var Company= this.get('model');
               var ex= this.model();
 
@@ -18,7 +20,8 @@ StockMarket.PlacebidorderController = Ember.Route.extend({
                       price : this.get('price'),
                       company: Company
                   });
-
+                  buyOrder.save();
+                  Company.get('buyOrders').pushObject(buyOrder);
 
 
               },
