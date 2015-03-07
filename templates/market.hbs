@@ -50,21 +50,26 @@
             <th colspan="2" style="text-align:center">Sell Order</th>
         </tr>
         <tr>
+
             <th>Volume</th>
             <th>Price</th>
-            <th>Volume</th>
+            <th>Price</th>
             <th>Volume</th>
 
         </tr>
         </thead>
-        <tbody>
+        {{#each item in getAll}}
+        <tbody >
         <tr>
-            <td>A</td>
-            <td>MODEL</td>
-            <td>C</td>
-            <td>D</td>
+            <td>{{item.buyS}}</td>
+            <td> {{item.buyP}}</td>
+            <td> {{item.sellP}}</td>
+            <td> {{item.sellS}}</td>
         </tr>
+        {{/each}}
         </tbody>
+
+
     </table>
 </div>
 

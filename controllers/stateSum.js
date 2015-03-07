@@ -6,6 +6,8 @@
 
 StockMarket.StateSumController= Ember.Controller.extend({
 
+needs: ["market", "placebidorder", "placesaleprice"],
+
 
 actions: {
 

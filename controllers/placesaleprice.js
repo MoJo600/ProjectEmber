@@ -11,6 +11,7 @@ StockMarket.PlacesalepriceController = Ember.ObjectController.extend({
 
         createSell: function(){
 
+            alert("start");
             var company= this.get('model');
            // var ex= this.model();
 
@@ -21,7 +22,7 @@ StockMarket.PlacesalepriceController = Ember.ObjectController.extend({
             });
             sellOrder.save();
             company.get('sellOrders').pushObject(sellOrder);
-
+         alert("finish");
 
         },
 
