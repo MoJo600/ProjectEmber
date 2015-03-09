@@ -20,18 +20,22 @@
             <th>Volume</th>
             <th>Price</th>
             <th>Volume</th>
-            <th>Volume</th>
+            <th>Price</th>
             <th>#</th>
 
         </tr>
         </thead>
         <tbody>
+        {{#each item in populateTable}}
         <tr>
-            <td>A</td>
-            <td style="text-align:center">B</td>
-            <td>C</td>
-            <td>D</td>
+            <td>{{item.buyCount}}</td>
+            <td style="text-align:center">{{item.buyShare}}</td>
+            <td>{{item.buyPrice}}</td>
+            <td>{{item.sellShare}}</td>
+            <td>{{item.sellPrice}}</td>
+            <td>{{item.sellCount}}</td>
         </tr>
+        {{/each}}
         </tbody>
     </table>
 </div>
@@ -61,10 +65,10 @@
         {{#each item in getAll}}
         <tbody >
         <tr>
-            <td>{{item.buyS}}</td>
-            <td> {{item.buyP}}</td>
-            <td> {{item.sellP}}</td>
-            <td> {{item.sellS}}</td>
+            <td style="text-align: center">{{item.buyS}}</td>
+            <td style="text-align: center"> {{item.buyP}}</td>
+            <td style="text-align: center" > {{item.sellP}}</td>
+            <td style="text-align: center" > {{item.sellS}}</td>
         </tr>
         {{/each}}
         </tbody>

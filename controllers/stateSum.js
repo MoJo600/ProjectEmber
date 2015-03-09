@@ -9,7 +9,28 @@ StockMarket.StateSumController= Ember.Controller.extend({
 needs: ["market", "placebidorder", "placesaleprice"],
 
 
+    rateLogo: function(){
+
+        var checks= this.get('model').get("rate");
+        var name=this.get('model').get('name');
+        if(this.get('model').get('rate')=="up") {
+            e =  "up.png"
+        } else if(this.get('model').get('rate')=="down"){
+
+            e="down.png";
+        }else if(this.get('model').get('rate')=="same") {
+            e="noChange.png";
+        }
+
+        return e;
+
+    }.property('model'),
+
 actions: {
+
+
+
+
 
     trans: function () {
 

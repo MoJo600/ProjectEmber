@@ -25,12 +25,12 @@
     <tbody>
         {{#each item in model}}
         <tr>
-            <td>{{item.id}}</td>
+            <td id="determine">{{item.id}}</td>
             <td>{{#link-to 'market' item.id}}{{item.name}}{{/link-to}}</td>
-            <td>{{item.openPrice}}</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td style="text-align:center">{{item.openPrice}}</td>
+            <td style="text-align:center">{{item.lastSale}}</td>
+            <td style="text-align:center"> {{item.rateDIFF}}<img {{bind-attr src=item.rate }}> {{item.ratePERCENT}} </td>
+            <td>{{item.shareVol}}</td>
             <td>{{#link-to 'placebidorder' item.id }}Buy{{/link-to}}</td>
             <td>{{#link-to 'placesaleprice' item.id }}Sell{{/link-to}}</td>
         </tr>

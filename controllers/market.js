@@ -64,23 +64,35 @@ StockMarket.MarketController= Ember.ObjectController.extend({
 
         });
 
-        var e= ordersController.objectAt(0).get('numShares');
-        var c= ordersController.objectAt(1).get('numShares');
-        var g= ordersController.objectAt(2).get('numShares');
-        alert(e);
+        //var e= ordersController.objectAt(0).get('numShares');
 
-        var sorted = sells.sort(function(a,b) {
-            return b.get('numShares') - a.get('numShares');
-        });
-        orders.sort(function(a,b){ return (a.get('numShares')- b.get('numShares'))});
-        for(var i=0; i<max; ++i){
+        //alert(e);
 
+        var sortedBuys = this.get('model').get('buyOrders').sortBy('numShares');
+        var sortedSells= this.get('model').get('sellOrders').sortBy('numShares');
 
-            var buyShares= orders.objectAt(i).get('numShares');
-            var buyPrice= orders.objectAt(i).get('price');
-            var sellShares= sells.objectAt(i).get('price');
-            var sellPrice= sells.objectAt(i).get('numShares');
+        //var c= sortedBuys.objectAt(0).get('numShares');
+        //var j= sortedBuys.objectAt(1).get('numShares');
 
+        //
+        // orders.sort(function(a,b){ return (a.get('numShares')- b.get('numShares'))});
+        var cJ=0;
+        for(var i=max-1; i>=0; --i){
+
+            var buyShares="";
+            var buyPrice="";
+            var sellShares="";
+            var sellPrice="";
+            if((orderLength-1)>=0) {
+                buyShares = sortedBuys.objectAt(i).get('numShares');
+                buyPrice = sortedBuys.objectAt(i).get('price');
+                --orderLength;
+            }
+            if(cJ<sellLength) {
+                sellShares = sortedSells.objectAt(cJ).get('price');
+                sellPrice = sortedSells.objectAt(cJ).get('numShares');
+                ++cJ;
+            }
 
             var obj={
 
@@ -88,6 +100,20 @@ StockMarket.MarketController= Ember.ObjectController.extend({
                 buyP: buyPrice,
                 sellP: sellPrice,
                 sellS: sellShares
+            }
+
+            array.push(obj);
+
+
+        }
+        if(array.length==0){
+
+            var obj={
+
+                buyS: "",
+                buyP: "",
+                sellP: "",
+                sellS: ""
             }
 
             array.push(obj);
@@ -103,68 +129,160 @@ StockMarket.MarketController= Ember.ObjectController.extend({
 
 
 
-    sortingFunction: function(a, b){
-
-        if (a.get('numShares') < b.get('numShares'))
-            return -1;
-        if (a.get('numShares') > b.get('numShares'))
-            return 1;
-
-        return 0;
+    sortingFunction: function(){
 
 
+       return this.get('model').get('buyOrders').sortBy('numShares')
 
-    },
+
+    }.property('buyOrders.@each.numShares'),
 
 
     populateTable: function(){
 
-        var w="hey";
-       // var body= document.getElementsByTagName('tbody')[1];
-        var test= document.getElementById(this.get('tbody'));
         var company= this.get("model");
         var sells= company.get("sellOrders");
-        var orders= company.get("buyOrders");
-        var ret=0;
-
-        var orderLength= company.get("buyOrders.length");
+        var buys= company.get("buyOrders");
+        var arraySells= new Array();
+        var arrayBuys= new Array();
+        var buyLength= company.get("buyOrders.length");
         var sellLength= company.get("sellOrders.length");
-        var max;
-        if(sellLength>orderLength)
-        max=sellLength;
-        else max=orderLength;
+        var deadPriceList= new Array();
 
-for(var i=0; i<max; ++i)
-        {
-            var row = document.createElement('tr');
-            var cell1 = document.createElement("td");
-            var cell2 = document.createElement("td");
-            var cell3 = document.createElement("td");
-            var cell4 = document.createElement("td");
-            if(i<orderLength) {
-                var textnode1 = document.createTextNode(orders.objectAt(i).numShares);
-                var textnode2 = document.createTextNode(orders.objectAt(i).price);
-                cell1.appendChild(textnode1);
-                cell2.appendChild(textnode2);
+        var buyCount=1;
+        var sellCount=1;
+
+        for(var i=0;i<buyLength;++i){
+
+            var buyObjPrice= buys.objectAt(i).get('price');
+            var buyObjShares= buys.objectAt(i).get('numShares');
+
+            if(deadPriceList.contains(buyObjPrice))
+            continue;
+
+            for(var j=i+1;j<buyLength;++j){
+
+               if(buys.objectAt(j).get('price')==buyObjPrice){
+                   ++buyCount;
+                   var temp= parseInt(buyObjShares)+ parseInt(buys.objectAt(j).get('numShares'));
+                   buyObjShares= String(temp);
+
+               }
+
+
+
             }
-            if(i<sellLength) {
-                var textnode1 = document.createTextNode(orders.objectAt(i).price);
-                var textnode2 = document.createTextNode(orders.objectAt(i).numShares);
-                cell3.appendChild(textnode1);
-                cell4.appendChild(textnode2);
-            }
+            deadPriceList.push(buyObjPrice);
 
-
-            row.appendChild(cell1);
-            row.appendChild(cell2);
-            row.appendChild(cell3);
-            row.appendChild(cell4);
-
-
-           this.get('metable').append(row);
+            var obj={
+                count: buyCount,
+                shares: buyObjShares,
+                price: buyObjPrice
+            };
+            buyCount=1;
+            arrayBuys.push(obj);
 
 
         }
+
+        deadPriceList=[];
+
+        for(var i=0;i<sellLength;++i){
+
+            var sellObjPrice= sells.objectAt(i).get('price');
+            var sellObjShares= sells.objectAt(i).get('numShares');
+
+            if(deadPriceList.contains(sellObjPrice))
+                continue;
+
+            for(var j=i+1;j<sellLength;++j){
+
+                if(sells.objectAt(j).get('price')==sellObjPrice){
+                    ++sellCount
+                    var temp= parseInt(sellObjShares)+ parseInt(sells.objectAt(j).get('numShares'));
+                    sellObjShares= String(temp);
+
+                }
+
+
+
+            }
+            deadPriceList.push(sellObjPrice);
+
+            var obj={
+                count: sellCount,
+                shares: sellObjShares,
+                price: sellObjPrice
+            };
+            sellCount=1;
+            arraySells.push(obj);
+
+
+        }
+
+        var totalArr= new Array();
+        arrayBuys.sort(function(a, b){
+            return b['shares']- a['shares'];
+        });
+        arraySells.sort(function(a, b){
+            return a['shares']- b['shares'];
+        });
+       // var test= arrayBuys[0]['shares'];
+        //
+        // test= arrayBuys[1]['shares'];
+        //test= arrayBuys[2]['shares'];
+       // test= arrayBuys[3]['shares'];
+        var max
+        if(arraySells.length>arrayBuys.length)
+            max=arraySells.length;
+        else max=arrayBuys.length;
+
+        for(var i=0; i<max;++i ){
+
+            var buyCount=0;
+            var buyShare="";
+            var buyPrice="";
+            var sellCount=0;
+            var sellShare="";
+            var sellPrice="";
+
+            if(i<buyLength) {
+                buyCount = arrayBuys[i]["count"];
+                buyShare = arrayBuys[i]["shares"];
+                buyPrice = arrayBuys[i]["price"];
+            }
+            if(i<sellLength) {
+                sellCount = arraySells[i]["count"];
+                sellShare = arraySells[i]["shares"];
+                sellPrice = arraySells[i]["price"];
+            }
+
+            var obj={
+
+            buyCount: buyCount,
+                buyShare: buyShare,
+                buyPrice: buyPrice,
+                sellCount: sellCount,
+                sellShare: sellShare,
+                sellPrice: sellPrice
+
+
+            }
+
+
+            totalArr.push(obj)
+
+
+
+
+        }
+
+
+      // var testing = totalArr[0]['buyShare'];
+       // var resting = totalArr[1]['buyShare'];
+
+
+        return totalArr;
 
     }.property("model"),
 

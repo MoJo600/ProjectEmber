@@ -12,7 +12,10 @@ StockMarket.Company= DS.Model.extend({
     buyOrders: DS.hasMany('buyOrd'),
     sellOrders: DS.hasMany('sellOrd'),
     shareVol: DS.attr('string'),
-    logo: DS.attr()
+    logo: DS.attr(),
+    rate: DS.attr(),
+    rateDIFF: DS.attr(),
+    ratePERCENT: DS.attr()
 
 
 
